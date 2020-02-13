@@ -33,7 +33,7 @@ def DownloadImage(post):
     if not (url.startswith("https:") or url.startswith("http:")):
         url = "https:" + url
 
-    filename = subdirectory + filename + ".jpg"
+    filename = os.path.join(subdirectory, filename + ".jpg")
 
     if os.path.exists(filename):
         print('Image %s already exists. Skipping download.' % filename)
@@ -92,7 +92,6 @@ def main():
             pool.close()
             pool.join()
             print("YOLO")
-            client.close()
         except Exception as e:
 
             # print("failed")
@@ -107,7 +106,7 @@ if __name__ == '__main__':
     out_dir = "/home/textmercato/filestore/images"
     sub_dir = "amazon"
 
-    subdirectory = out_dir + "/" + sub_dir
+    subdirectory = os.path.join(out_dir + sub_dir)
 
     if not os.path.exists(out_dir):
         os.makedirs(out_dir)
