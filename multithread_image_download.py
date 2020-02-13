@@ -106,7 +106,7 @@ if __name__ == '__main__':
     out_dir = "/home/textmercato/filestore/images"
     sub_dir = "amazon"
 
-    subdirectory = os.path.join(out_dir + sub_dir)
+    subdirectory = os.path.join(out_dir , sub_dir)
 
     if not os.path.exists(out_dir):
         os.makedirs(out_dir)
