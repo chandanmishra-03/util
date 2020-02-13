@@ -77,7 +77,7 @@ def DownloadImage(post):
 
 def main():
     all_urls = [[
-        "https://ws-eu.amazon-adsystem.com/widgets/q?encoding=UTF8&MarketPlace=GB&ASIN=" + i + "&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=SL250",
+        "https://ws-eu.amazon-adsystem.com/widgets/q?encoding=UTF8&MarketPlace=GB&ASIN=" + i + "&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=SL400",
         i] for i in data["asin"]]
 
     max_batch = 200
