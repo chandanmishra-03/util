@@ -7,15 +7,6 @@ from io import BytesIO
 import json
 import time
 import requests
-import datetime
-import random
-import string
-import urllib.parse
-import decimal
-import uuid
-import re
-import pymongo
-from pymongo import MongoClient
 from multiprocessing.dummy import Pool as ThreadPool
 import concurrent.futures
 import urllib.request
