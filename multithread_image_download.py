@@ -33,15 +33,7 @@ def DownloadImage(post):
     if not (url.startswith("https:") or url.startswith("http:")):
         url = "https:" + url
 
-    subdirectory = out_dir + "/" + sub_dir
     filename = subdirectory + filename + ".jpg"
-
-    try:
-        if not os.path.exists(subdirectory):
-            os.makedirs(subdirectory)
-    except Exception as e:
-        print('Location: %s already exists.' % subdirectory)
-        return
 
     if os.path.exists(filename):
         print('Image %s already exists. Skipping download.' % filename)
@@ -54,25 +46,25 @@ def DownloadImage(post):
         response = requests.get(url)
         image_data = response.content
     except:
-        print('Warning: Could not download image %s from %s' % (key, url))
+        print('Warning: Could not download image %s from %s' % (post[1], url))
         return
 
     try:
         pil_image = Image.open(BytesIO(image_data))
     except:
-        print('Warning: Failed to parse image %s %s' % (key, url))
+        print('Warning: Failed to parse image %s %s' % (post[1], url))
         return
 
     try:
         pil_image = pil_image.resize((400, 400), Image.ANTIALIAS)
     except:
-        print('Warning: Failed to resize image %s %s' % (key, url))
+        print('Warning: Failed to resize image %s %s' % (post[1], url))
         return
 
     try:
         pil_image_rgb = pil_image.convert('RGB')
     except:
-        print('Warning: Failed to convert image %s to RGB' % key)
+        print('Warning: Failed to convert image %s to RGB' % post[1])
         return
 
     try:
@@ -115,8 +107,17 @@ if __name__ == '__main__':
     out_dir = "/home/textmercato/filestore/images"
     sub_dir = "amazon"
 
+    subdirectory = out_dir + "/" + sub_dir
+
     if not os.path.exists(out_dir):
         os.makedirs(out_dir)
+    try:
+        if not os.path.exists(subdirectory):
+            os.makedirs(subdirectory)
+    except Exception as e:
+        print('Location: %s already exists.' % subdirectory)
+        pass
+
     # reading Data
     data = pd.read_pickle("/home/textmercato/filestore/amazon/combined_l4_product_data.pkl")
     print(data.head())
